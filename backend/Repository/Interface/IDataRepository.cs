@@ -10,7 +10,7 @@ namespace backend.Repository {
         // CRIAR DADOS
         void Create(TEntity entity);
         // ATUALIZAR
-        void Update(TEntity cliente, TEntity entity);
+        void Update(TEntity cliente);
         // APAGAR ITEM
         void Delete(TEntity entity);
     }

@@ -10,8 +10,8 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(EfDbContext))]
-    [Migration("20190418202837_primeiro13")]
-    partial class primeiro13
+    [Migration("20190419025325_primeirwa")]
+    partial class primeirwa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,15 +28,18 @@ namespace backend.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Cpf")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(11);
 
                     b.Property<DateTime>("Nascimento");
 
                     b.Property<string>("Nome")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(35);
 
                     b.Property<string>("Sobrenome")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<int?>("profissaoId");
 
@@ -44,7 +47,7 @@ namespace backend.Migrations
 
                     b.HasIndex("profissaoId");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Cliente");
                 });
 
             modelBuilder.Entity("backend.Model.Profissao", b =>
@@ -53,20 +56,22 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("Nome")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("IdProfissao");
 
-                    b.ToTable("Profissoes");
+                    b.ToTable("Profissao");
                 });
 
             modelBuilder.Entity("backend.Model.Cliente", b =>
                 {
-                    b.HasOne("backend.Model.Profissao")
-                        .WithMany("Cliente")
+                    b.HasOne("backend.Model.Profissao", "Profissao")
+                        .WithMany()
                         .HasForeignKey("profissaoId");
                 });
 #pragma warning restore 612, 618

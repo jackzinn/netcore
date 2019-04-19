@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using backend.Model;
 using backend.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -11,20 +12,34 @@ namespace backend.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly IDataRepository<Cliente> _dataRepository;
-        
-        public ClienteController(IDataRepository<Cliente> dataRepository)
-        {
-            _dataRepository = dataRepository;
-        }
+        public ClienteController(IDataRepository<Cliente> dataRepository) =>  _dataRepository = dataRepository;
+
         // ############################################################
         // ############################################################
         // getsimples dos meu clientes
         [HttpGet]
-        public IActionResult Get()
+        public IEnumerable<Cliente> Get()
         {
-            IEnumerable<Cliente> clientes = _dataRepository.Read();
+            var clientes = _dataRepository.Read();
+            return clientes;
+        }
+
+        // ############################################################
+        // ############################################################
+        // getybyclientes get por id do cliente
+        [HttpGet("{id}", Name="getCliente")]
+        public IActionResult Get(int id)
+        {
+            var clientes = _dataRepository.ReadId(id);
+ 
+            if (clientes == null)
+            {
+                return NotFound("Nenhum cliente foi encontrado.");
+            }
+
             return Ok(clientes);
         }
+
         // ############################################################
         // ############################################################
         // CADASTRANDO CLIENTE
@@ -36,9 +51,9 @@ namespace backend.Controllers
             {
                 return BadRequest("Requisição está vazia");
             }
- 
             _dataRepository.Create(clientes);
-            return CreatedAtRoute("Get", 
+
+            return CreatedAtRoute("getCliente", 
                 new { Id = clientes.IdCliente }, clientes);
         }
         // ############################################################
@@ -52,14 +67,19 @@ namespace backend.Controllers
                 return BadRequest("Cliente Vazio");
             }
             
-            Cliente atualizaCliente = _dataRepository.ReadId(id);
+            var atualizaCliente = _dataRepository.ReadId(id);
 
             if (atualizaCliente == null)
             {
                 return NotFound("Id Inexistente");
             }
- 
-            _dataRepository.Update(atualizaCliente, cliente);
+
+            atualizaCliente.Nome = cliente.Nome;
+            atualizaCliente.Sobrenome = cliente.Sobrenome;
+            atualizaCliente.Nascimento = cliente.Nascimento;
+            atualizaCliente.Profissao = cliente.Profissao;
+
+            _dataRepository.Update(atualizaCliente);
 
 
             return NoContent();
@@ -70,7 +90,7 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Cliente clienteDel = _dataRepository.ReadId(id);
+            var clienteDel = _dataRepository.ReadId(id);
             
             if (clienteDel == null)
             {
@@ -79,21 +99,6 @@ namespace backend.Controllers
  
             _dataRepository.Delete(clienteDel);
             return NoContent();
-        }
-        // ############################################################
-        // ############################################################
-        // getybyclientes get por id do cliente
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            Cliente clientes = _dataRepository.ReadId(id);
- 
-            if (clientes == null)
-            {
-                return NotFound("Nenhum cliente foi encontrado.");
-            }
-
-            return Ok(clientes);
         }
 
     }

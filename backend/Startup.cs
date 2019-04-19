@@ -33,9 +33,9 @@ namespace backend
             services.AddDbContext<EfDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             // CLIENTE
-            services.AddScoped<IDataRepository<Cliente>, ICliente>();
+            services.AddScoped<IDataRepository<Cliente>, ClienteRepository>();
             // PROFISSOES
-            services.AddScoped<IDataRepository<Profissao>, IProfissao>();
+            services.AddScoped<IDataRepository<Profissao>, ProfissaoRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
