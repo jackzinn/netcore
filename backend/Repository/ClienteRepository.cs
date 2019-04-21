@@ -25,7 +25,7 @@ namespace backend.Repository
         {
             System.Console.WriteLine("TROUXE TUDO");
             return _clienteContext.Clientes
-                .Include (r => r.Profissao)
+                // .Include (r => r.Profissao)
                 .ToList();
         }
 
@@ -34,7 +34,7 @@ namespace backend.Repository
         {
             System.Console.WriteLine("TROUXE CLIENTE IDSETADO");
             return _clienteContext.Clientes
-            .Include(p => p.Profissao)
+            // .Include(p => p.Profissao)
             .FirstOrDefault(e => e.IdCliente == id);
         }
 

@@ -1,0 +1,72 @@
+<div class="col-md-12">
+    <div class="container">
+        <div class="form-group" style="margin-left: 16px; margin-top: 5px;">
+            <h4>
+                <b>{{tituloPagina}}</b>
+            </h4>
+        </div>
+
+        <form name="formClient">
+            <div class="input-group">
+                <div class="col-md-12 form-group">
+
+                    <input type="text" class="form-control" placeholder="Nome" aria-label="Nome"
+                        aria-describedby="basic-addon2" ng-model="cliente.nome" ng-readonly="{{readonlyOption}}"
+                        ng-minlength="3" ng-maxlength="30" required>
+                        <span style="color:red;">{{nomeObrigatorio}}</span>
+                </div>
+
+                <div class="col-md-12 form-group">
+                    <input type="text" class="form-control" placeholder="Sobrenome" aria-label="Sobrenome"
+                        aria-describedby="basic-addon2" ng-model="cliente.sobrenome" ng-minlength="3" ng-maxlength="100"
+                        ng-readonly="{{readonlyOption}}" required>
+                        <span style="color:red;">{{sobrenomeObrigatorio}}</span>
+                </div>
+
+                <div class="col-md-4 form-group">
+
+                    <input type="text" class="form-control cpf" id="cpf" placeholder="CPF" aria-label="CPF"
+                        aria-describedby="basic-addon2" ng-model="cliente.cpf"
+                        ui-br-cpf-mask ng-readonly="{{readonlyOption}}" required>
+                        <span style="color:red;">{{cpfObrigatorio}}</span>
+                </div>
+
+                <div class="col-md-4 form-group">
+
+                    <input type="text" class="form-control datepicker" placeholder="Nascimento" aria-label="Nascimento"
+                        aria-describedby="basic-addon2" ng-model="cliente.nascimento" ng-change="idade();"
+                        ui-date-mask="DD/MM/YYYY" ng-readonly="{{readonlyOption}}" required>
+                        <span style="color:red;">{{nascimentoObrigatorio}}</span>
+                </div>
+
+                <div class="col-md-4 form-group">
+                    <span ng-model="cliente.idade">Idade: {{cliente.idade}}</span>
+                </div>
+
+                <div class="col-md-12 form-group ">
+
+                    <select class="form-control" placeholder="Profissao" ng-model="cliente.profissao"
+                        aria-label="Profissao" aria-describedby="basic-addon2" ng-readonly="{{readonlyOption}}">
+
+                        <option ng-repeat="profissao in profissoes" ng-value="{{profissao.Id}}">{{profissao.Cargo}}
+                        </option>
+
+                    </select>
+                    
+                </div>
+
+
+                <div class="col-md-12 form-group text-right">
+                    <div class="btn-group">
+                        <a class="btn btn-danger" ui-sref="/clientes">Voltar</a>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-info" id="botaoSave" ng-click="createCliente();">{{typeButton}}</button>
+                    </div>
+
+                </div>
+        </form>
+    </div>
+</div>
+
+<div id="snackbar">Efetuado com sucesso. </br> Redirecionando...</div>

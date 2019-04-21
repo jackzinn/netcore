@@ -52,7 +52,7 @@ namespace backend.Controllers
                 return BadRequest("Requisição está vazia");
             }
             _dataRepository.Create(clientes);
-
+            
             return CreatedAtRoute("getCliente", 
                 new { Id = clientes.IdCliente }, clientes);
         }
@@ -77,6 +77,8 @@ namespace backend.Controllers
             atualizaCliente.Nome = cliente.Nome;
             atualizaCliente.Sobrenome = cliente.Sobrenome;
             atualizaCliente.Nascimento = cliente.Nascimento;
+            atualizaCliente.Cpf = cliente.Cpf;
+            atualizaCliente.Idade = cliente.Idade;
             atualizaCliente.Profissao = cliente.Profissao;
 
             _dataRepository.Update(atualizaCliente);

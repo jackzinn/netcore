@@ -24,18 +24,29 @@ namespace backend
             Configuration = configuration;
         }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {   
+        {       
+            services.AddCors(options =>
+        {
+            options.AddPolicy(MyAllowSpecificOrigins,
+            builder =>
+            {
+                builder.WithOrigins("https://localhost:5001","http://127.0.0.1:8887", "http://localhost:8080");
+                });
+            });
+
             // conectando o banco de dados com a ConnectionString
             services.AddDbContext<EfDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             // CLIENTE
             services.AddScoped<IDataRepository<Cliente>, ClienteRepository>();
             // PROFISSOES
-            services.AddScoped<IDataRepository<Profissao>, ProfissaoRepository>();
+            // services.AddScoped<IDataRepository<Profissao>, ProfissaoRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -53,6 +64,7 @@ namespace backend
                 app.UseHsts();
             }
 
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseMvc();
         }

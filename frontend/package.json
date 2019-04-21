@@ -1,0 +1,23 @@
+{
+  "name": "teste-fagron",
+  "version": "1.0.0",
+  "description": "front-end",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "author": "Kelvin-Musselli",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.7",
+    "angular": "^1.7.8",
+    "angular-input-masks": "^4.3.0",
+    "angular-translate": "^2.18.1",
+    "bootstrap": "^4.3.1",
+    "google-fonts": "^1.0.0",
+    "jquery": "^3.4.0",
+    "jquery-mask-plugin": "^1.14.15",
+    "jquery-ui": "^1.12.1",
+    "moment": "^2.24.0"
+  }
+}

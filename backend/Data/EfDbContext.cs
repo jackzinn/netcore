@@ -10,7 +10,7 @@ namespace backend.Data
 
         }
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Profissao> Profissoes { get; set; }
+
 
     }
 }

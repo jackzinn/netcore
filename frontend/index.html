@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+               script-src 'self' 'unsafe-inline' 'unsafe-eval'
+                           127.0.0.1:*
+                           http://*.gstatic.com          
+                           http://*.googleapis.com
+                           https://*.gstatic.com
+                           https://*.googleapis.com
+                           ;
+               style-src  'self' 'unsafe-inline'
+                           127.0.0.1
+                           http://*.gstatic.com         
+                           http://*.googleapis.com
+                           https://*.gstatic.com
+                           https://*.googleapis.com
+    ">
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="app/css/style.css">
+
+    <!-- libs -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/moment/moment.js"></script>
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+    <script src="node_modules/angular-input-masks/releases/angular-input-masks-dependencies.js"></script>
+    <script src="node_modules/angular-input-masks/releases/angular-input-masks.br.js"></script>
+
+    <!-- angularjs -->
+    <script src="app.js"></script>
+
+    <script src="app/config/config.js"></script>
+    <!-- controllers -->
+    <script src="app/controllers/cliente/clientesCtrl.js"></script>
+    <script src="app/controllers/cliente/novoClienteCtrl.js"></script>
+    <!-- services -->
+    <script src="app/services/clientes/clientesAPIServices.js"></script>
+
+    <title>Teste-Fagron</title>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a class="navbar-brand" href="#">FAGRON</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" ui-sref="/clientes">Clientes <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" ui-sref="/cliente/novo">Novo Cliente <span class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</head>
+
+<body ng-app="app">
+    <div class="container-fluid">
+
+        <ui-view></ui-view>
+
+    </div>
+</body>
+
+</html>

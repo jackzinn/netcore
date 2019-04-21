@@ -13,7 +13,7 @@ namespace backend.Model
         public int IdCliente { get; set; }
 
         [Required] 
-        [StringLength(35)]
+        [StringLength(30)]
         public string Nome { get; set; }
 
         [Required] 
@@ -25,10 +25,11 @@ namespace backend.Model
         public string Cpf { get; set; }
 
         [Required] 
-        public DateTime Nascimento { get; set; }
+        public int Idade { get; set; }
 
-        [ForeignKey("profissaoId")]
-        public virtual Profissao Profissao { get; set; }
+        [Required] 
+        public DateTime Nascimento { get; set; }
+        public int Profissao { get; set; }
 
 
     }

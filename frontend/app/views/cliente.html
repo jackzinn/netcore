@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-md-12" style="margin-top: 5px;">
+        <h4>
+            <b>{{tituloPagina}}</b>
+        </h4>
+    </div>
+
+    <div class="col-md-6 input-group mb-3" style="margin-top:12px;">
+        <input type="text" class="form-control" placeholder="Digite um cliente para filtrar.." name="filtro" id="filtro"
+            ng-model="filtrar">
+        <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2"><i class="material-icons">
+                    search
+                </i>
+            </span>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <b>ID</b>
+                    </th>
+                    <th>
+                        <b>Nome:</b>
+                    </th>
+                    <th>
+                        <b>Sobrenome:</b>
+                    </th>
+                    <th>
+                        <b>Idade:</b>
+                    </th>
+                    <th>
+                        <b>CPF:</b>
+                    </th>
+                    <th>
+                        <b>Nascimento:</b>
+                    </th>
+                    <th>
+                        <b>Profissao:</b>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cliente in clientes | filter:filtrar">
+                    <td>{{cliente.idCliente}}</td>
+                    <td>{{cliente.nome}}</td>
+                    <td>{{cliente.sobrenome}}</td>
+                    <td>{{cliente.idade}}</td>
+                    <td>{{cliente.cpf}}</td>
+                    <td>{{cliente.nascimento}}</td>
+                    <td>{{cliente.profissao}}</td>
+                    <td>
+                        <div class="iconsViewCliente">
+                            <i title="Detalhes" ng-click="visualizarCliente($event);" ng-value="{{cliente.idCliente}}"
+                                class="material-icons verCliente">
+                                remove_red_eye
+                            </i>
+                            <i title="Editar" ng-click="editarCliente($event);" ng-value="{{cliente.idCliente}}"
+                                class="material-icons editarCliente">
+                                border_color
+                            </i>
+                            <i title="Excluir" ng-value="{{cliente.idCliente}}" ng-click="excluirCliente($event);"
+                                class="material-icons deletecliente">
+                                delete
+                            </i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalClientes" tabindex="-1" role="dialog" aria-labelledby="modalClienteConfirm"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalClienteConfirm">Excluindo Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Você tem certeza ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="cancelarExclusao"
+                    data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="excluirClienteModal">Excluir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="snackbar">O Cliente foi removido.</div>
+<div id="snackbarCancel">Operação cancelada.</div>

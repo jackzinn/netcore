@@ -12098,11 +12098,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kelvin.musselli\\Desktop\\netcore\\backend\\backend.csproj",
+      "projectUniqueName": "C:\\Users\\kelvin.musselli\\Desktop\\challenge_net_kelvin_musselli\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "C:\\Users\\kelvin.musselli\\Desktop\\netcore\\backend\\backend.csproj",
+      "projectPath": "C:\\Users\\kelvin.musselli\\Desktop\\challenge_net_kelvin_musselli\\backend\\backend.csproj",
       "packagesPath": "C:\\Users\\kelvin.musselli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kelvin.musselli\\Desktop\\netcore\\backend\\obj\\",
+      "outputPath": "C:\\Users\\kelvin.musselli\\Desktop\\challenge_net_kelvin_musselli\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
